@@ -11,7 +11,34 @@
   <header class="header">
     <a href="#" target="_blank" rel="noopener" class="header__logo"></a>
   </header>
-  <main class="content"></main>
+  <main class="content">
+    <section class="profile">
+      <ul class="profile__list">
+        <li class="profile__list-item"><div class="profile__avatar"></div></li>
+        <li class="profile__list-item">
+          <div class="profile__info">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <p class="profile__job">Исследователь океана</p>
+            <button class="profile__edit-button"></button>
+          </div>
+        </li>
+      </ul>
+      <button class="profile__add-button"></button>
+    </section> 
+    <section class="photo-grid"></section>
+    <section class="popup">
+      <div class="popup__container">
+        <form action="#" class="popup__form">
+          <button class="popup__close-button"></button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input type="text" class="popup__input-name" placeholder="Жак-Ив Кусто">
+          <input type="text" class="popup__input-job">
+          <button class="popup__save-button">Сохранить</button>
+        </form>
+      </div>
+    </section>
+  </main>
   <footer class="footer"></footer>
+  <script src="./script.js"></script>
 </body>
 </html>

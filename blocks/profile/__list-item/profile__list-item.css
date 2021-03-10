@@ -1,0 +1,7 @@
+.profile__list-item {
+  padding-right: 30px;
+}
+
+.profile__list-item:last-of-type {
+  padding: 0;
+}
