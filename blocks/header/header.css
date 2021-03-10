@@ -1,0 +1,7 @@
+.header {
+  position: relative;
+  margin: 45px auto 0;
+  max-width: 880px;
+  min-height: 74px;
+  border-bottom: 1px solid #545454;
+}
