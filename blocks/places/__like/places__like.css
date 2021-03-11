@@ -1,0 +1,17 @@
+.places__like {
+  background-image: url(../../../images/like-disabled.svg);
+  background-repeat: no-repeat;
+  width: 22px;
+  height: 19px;
+  transition: 0.3s;
+}
+
+.places__like:hover {
+  opacity: .5;
+  cursor: pointer;
+}
+
+.places__like:active {
+  background-image: url(../../../images/like-active.svg);
+  opacity: 1;
+}

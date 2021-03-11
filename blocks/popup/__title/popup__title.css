@@ -1,4 +1,6 @@
 .popup__title {
+  padding-top: 34px;
+  padding-bottom: 50px;
   margin: 0;
   color: #000000;
   font-family: 'Inter', sans-serif;

@@ -1,11 +1,11 @@
 .header__logo {
   background-image: url(../../../images/logo_white.svg);
-  position: absolute;
-  top: 0;
-  left: 0;
   background-repeat: no-repeat;
   width: 142px;
   height: 33px;
+  position: absolute;
+  top: 0;
+  left: 0;
   transition: 0.3s;
 }
 

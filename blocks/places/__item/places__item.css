@@ -1,0 +1,5 @@
+.places__item {
+  max-width: 282px;
+  display: flex;
+  flex-direction: column;
+}

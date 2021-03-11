@@ -10,5 +10,12 @@
   outline: none;
   min-height: 50px;
   width: 100%;
-  margin-top: 48px;
+  margin-top: 44px;
+  margin-bottom: 37px;
+  transition: 0.3s;
+}
+
+.popup__save-button:hover {
+  background-color: rgba(0,0,0,.8);
+  cursor: pointer;
 }
