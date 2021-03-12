@@ -1,18 +1,20 @@
-.places__item {
+.place {
   max-width: 282px;
   display: flex;
   flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 10px;
 }
 
 @media screen and (max-width: 1024px) {
-  .places__item {
+  .place {
     max-width: none;
     width: 100%;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .places__item {
+  .place {
     margin: 0 auto;
   }
 }

@@ -1,9 +1,0 @@
-.places__info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 27px 20px 26px 21px;
-  background-color: #ffffff;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}

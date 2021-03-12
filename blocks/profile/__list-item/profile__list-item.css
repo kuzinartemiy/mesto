@@ -1,9 +1,0 @@
-.profile__list-item {
-  padding-right: 30px;
-}
-
-@media screen and (max-width:768px) {
-  .profile__list-item {
-    padding: 0;
-  }
-}

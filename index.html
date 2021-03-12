@@ -13,75 +13,71 @@
   </header>
   <main class="content">
     <section class="profile">
-      <ul class="profile__list">
-        <li class="profile__list-item"><div class="profile__avatar"></div></li>
-        <li class="profile__list-item">
-          <div class="profile__info">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <p class="profile__job">Исследователь океана</p>
-            <button class="profile__edit-button"></button>
-          </div>
-        </li>
-      </ul>
-      <button class="profile__add-button"></button>
+      <div class="profile__avatar"></div>
+      <div class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <p class="profile__job">Исследователь океана</p>
+        <button aria-label="Редактировать" type="button" class="profile__edit-button"></button>
+      </div>
+      <button aria-label="Добавить" type="button" class="profile__add-button"></button>
     </section> 
     <section class="places">
       <ul class="places__list">
-        <li class="places__item">
-          <img src="./images/kirill-pershin-1088404-unsplash.png" alt="Старая часовня посреди гор" class="places__image">
-          <div class="places__info">
-            <h2 class="places__title">Карачаевск</h2>
-            <div class="places__like"></div>
+        <li class="place">
+          <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Старая часовня посреди гор" class="place__image">
+          <div class="place__info">
+            <h2 class="place__title">Карачаевск</h2>
+            <button aria-label="Нравится" type="button" class="place__like"></button>
           </div>
         </li>
-        <li class="places__item">
-          <img src="./images/kirill-pershin-1404681-unsplash.png" alt="Вид на гору Эльбрус" class="places__image">
-          <div class="places__info">
-            <h2 class="places__title">Гора Эльбрус</h2>
-            <div class="places__like"></div>
+        <li class="place">
+          <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Вид на гору Эльбрус" class="place__image">
+          <div class="place__info">
+            <h2 class="place__title">Гора Эльбрус</h2>
+            <button aria-label="Нравится" type="button" class="place__like"></button>
           </div>
         </li>
-        <li class="places__item">
-          <img src="./images/kirill-pershin-1556355-unsplash.png" alt="Снежные скалы" class="places__image">
-          <div class="places__info">
-            <h2 class="places__title">Домбай</h2>
-            <div class="places__like"></div>
+        <li class="place">
+          <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Снежные скалы" class="place__image">
+          <div class="place__info">
+            <h2 class="place__title">Домбай</h2>
+            <button aria-label="Нравится" type="button" class="place__like"></button>
           </div>
         </li>
-        <li class="places__item">
-          <img src="./images/kirill-pershin-1404681-unsplash.png" alt="Самое сложное в обучении" class="places__image">
-          <div class="places__info">
-            <h2 class="places__title">Гора Эльбрус</h2>
-            <div class="places__like"></div>
+        <li class="place">
+          <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Самое сложное в обучении" class="place__image">
+          <div class="place__info">
+            <h2 class="place__title">Гора Эльбрус</h2>
+            <button aria-label="Нравится" type="button" class="place__like"></button>
           </div>
         </li>
-        <li class="places__item">
-          <img src="./images/kirill-pershin-1556355-unsplash.png" alt="Это писать альты к картинкам" class="places__image">
-          <div class="places__info">
-            <h2 class="places__title">Домбай</h2>
-            <div class="places__like"></div>
+        <li class="place">
+          <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Это писать альты к картинкам" class="place__image">
+          <div class="place__info">
+            <h2 class="place__title">Домбай</h2>
+            <button aria-label="Нравится" type="button" class="place__like"></button>
           </div>
         </li>
-        <li class="places__item">
-          <img src="./images/kirill-pershin-1088404-unsplash.png" alt="Старая часовня посреди гор" class="places__image">
-          <div class="places__info">
-            <h2 class="places__title">Карачаево-Черкессия</h2>
-            <div class="places__like"></div>
+        <li class="place">
+          <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Старая часовня посреди гор" class="place__image">
+          <div class="place__info">
+            <h2 class="place__title">Карачаево-Черкессия</h2>
+            <button aria-label="Нравится" type="button" class="place__like"></button>
           </div>
         </li>
       </ul>
     </section>
-    <section class="popup">
+    <div class="popup">
       <div class="popup__container">
-        <form action="#" class="popup__form">
-          <button class="popup__close-button"></button>
+        <form name="profile-edit" action="#" class="popup__form">
+          <button aria-label="Закрыть" type="button" class="popup__close-button"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input type="text" class="popup__input-name">
-          <input type="text" class="popup__input-job">
-          <button type="submit" class="popup__save-button">Сохранить</button>
+          <input name="input-name" type="text" class="popup__input popup__input_field_name">
+          <input name="input-job" type="text" class="popup__input popup__input_field_job">
+          <button aria-label="Сохранить" type="submit" class="popup__save-button">Сохранить</button>
         </form>
       </div>
-    </section>
+    </div>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
