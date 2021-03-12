@@ -1,7 +1,6 @@
 .popup__close-button {
+  padding: 0;
   background-image: url(../../../images/add-icon.svg);
-  background-repeat: no-repeat;
-  background-position: center;
   background-size: cover;
   background-color: transparent;
   width: 40px;
