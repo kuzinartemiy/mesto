@@ -8,3 +8,15 @@
   grid-column: 1/2;
   grid-row: 2/3;
 }
+
+@media screen and (max-width:768px) {
+  .profile__job {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width:425px) {
+  .profile__job {
+    font-size: 14px;
+  }
+}

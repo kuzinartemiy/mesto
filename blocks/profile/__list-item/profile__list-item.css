@@ -2,6 +2,8 @@
   padding-right: 30px;
 }
 
-.profile__list-item:last-of-type {
-  padding: 0;
+@media screen and (max-width:768px) {
+  .profile__list-item {
+    padding: 0;
+  }
 }

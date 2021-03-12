@@ -19,3 +19,9 @@
   background-color: rgba(0,0,0,.8);
   cursor: pointer;
 }
+
+@media screen and (max-width: 520px) {
+  .popup__save-button {
+    font-size: 14px;
+  }
+}

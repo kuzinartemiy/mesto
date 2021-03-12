@@ -3,3 +3,16 @@
   display: flex;
   flex-direction: column;
 }
+
+@media screen and (max-width: 1024px) {
+  .places__item {
+    max-width: none;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .places__item {
+    margin: 0 auto;
+  }
+}

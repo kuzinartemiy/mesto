@@ -7,6 +7,14 @@ let jobProfile = content.querySelector('.profile__job');
 let nameInput = content.querySelector('.popup__input-name');
 let jobInput = content.querySelector('.popup__input-job');
 let formElement = content.querySelector('.popup__form');
+let likeElements = content.querySelectorAll('.places__like');
+
+for (let i = 0; i < likeElements.length; i += 1) {
+  let likeElement = likeElements[i];
+  likeElement.addEventListener('click', function() {
+    likeElement.classList.toggle('places__like_active');
+  });
+}
 
 function openPopup() {
   popup.classList.add('popup_opened');
@@ -15,6 +23,7 @@ function openPopup() {
 function closePopup() {
   popup.classList.remove('popup_opened');
 }
+
 
 function formSubmitHandler (evt) {
   evt.preventDefault(); 
