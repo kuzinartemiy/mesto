@@ -67,14 +67,25 @@
         </li>
       </ul>
     </section>
-    <div class="popup">
+    <div id="edit-popup" class="popup">
       <div class="popup__container">
-        <form name="profile-edit" action="#" class="popup__form">
-          <button aria-label="Закрыть" type="button" class="popup__close-button"></button>
+        <form id="edit-form" name="profile-edit" action="#" class="popup__form">
+          <button id="edit-close-button" aria-label="Закрыть" type="button" class="popup__close-button"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
           <input name="input-name" type="text" class="popup__input popup__input_field_name">
           <input name="input-job" type="text" class="popup__input popup__input_field_job">
           <button aria-label="Сохранить" type="submit" class="popup__save-button">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div id="add-popup" class="popup">
+      <div class="popup__container">
+        <form id="add-card-form" name="profile-add" action="#" class="popup__form">
+          <button id="add-card-close-button" aria-label="Закрыть" type="button" class="popup__close-button"></button>
+          <h2 class="popup__title">Новое место</h2>
+          <input name="input-card-name" type="text" placeholder="Название" class="popup__input popup__input_field_card-name">
+          <input name="input-card-link" type="text" placeholder="Ссылка на картинку" class="popup__input popup__input_field_card-link">
+          <button aria-label="Сохранить" type="submit" class="popup__save-button">Создать</button>
         </form>
       </div>
     </div>
