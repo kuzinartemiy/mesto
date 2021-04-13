@@ -41,6 +41,7 @@ const setEventListeners = (formElement, configObj) => {
   formElement.addEventListener('submit', function(evt) {
     evt.preventDefault();
   })
+
   const inputList = Array.from(formElement.querySelectorAll(configObj.inputSelector));
   const buttonElement = formElement.querySelector(configObj.submitButtonSelector);
 
@@ -51,6 +52,10 @@ const setEventListeners = (formElement, configObj) => {
     })
   })
   editButton.addEventListener('click', function() {
+    toggleButtonState(inputList, buttonElement, configObj);
+  })
+
+  addButton.addEventListener('click', function() {
     toggleButtonState(inputList, buttonElement, configObj);
   })
 }
