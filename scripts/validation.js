@@ -51,15 +51,6 @@ const setEventListeners = (formElement, configObj) => {
       toggleButtonState(inputList, buttonElement, configObj);
     })
   })
-
-  toggleButtons(editButton, inputList, buttonElement, configObj);
-  toggleButtons(addButton, inputList, buttonElement, configObj);
-}
-
-const toggleButtons = (openPopupButton, inputList, buttonElement, configObj) => {
-  openPopupButton.addEventListener('click', function() {
-    toggleButtonState(inputList, buttonElement, configObj);
-  })
 }
 
 const enableValidation = (configObj) => {

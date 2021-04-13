@@ -96,13 +96,16 @@ function openPopup(popup) {
 }
 
 function closePopup(popup) {
-  
+
   popup.classList.remove('popup_opened');
 
   document.removeEventListener('click', closeOverlayClick);
   document.removeEventListener('keyup', closeEscapeKeydown);
+}
 
-
+const toggleButton = (buttonElement) => {
+  buttonElement.setAttribute('disabled', true);
+  buttonElement.classList.add('popup__save-button_disabled');
 }
 
 //close by events functions
@@ -146,7 +149,7 @@ function addCardFormSubmitHandler(evt) {
 
 //open buttons events
 editButton.addEventListener('click', function () {
-  
+
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
   
@@ -154,6 +157,10 @@ editButton.addEventListener('click', function () {
 });
 
 addButton.addEventListener('click', function () {
+  const button = addPopup.querySelector('.popup__save-button');
+  //disable save-button before validation
+  toggleButton(button);
+
   openPopup(addPopup);
 });
 
