@@ -7,7 +7,9 @@ const editButton = content.querySelector('.profile__edit-button');
 const addButton = content.querySelector('.profile__add-button');
 const editCloseButton = content.querySelector('#edit-close-button');
 const addCardCloseButton = content.querySelector('#add-card-close-button');
+const addCardSaveButton = content.querySelector('#add-card-save-button');
 const photoCardCloseButton = content.querySelector('#photo-card-close-button');
+
 //popups
 const editPopup = content.querySelector('#edit-popup');
 const addPopup = content.querySelector('#add-popup');
@@ -88,10 +90,28 @@ function openCardPhoto (name, link) {
 //popups functions
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+
+  document.addEventListener('click', closeOverlayClick);
+  document.addEventListener('keyup', closeEscapeKeydown);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+}
+
+//close by events functions
+
+const closeOverlayClick = (evt) => {
+  if (evt.target.classList.contains('popup_opened')) {
+    closePopup(evt.target);
+  }
+}
+
+const closeEscapeKeydown = (evt) => {
+  if(evt.key === 'Escape') {
+    const activePopup = document.querySelector('.popup_opened');
+    closePopup(activePopup);
+  }
 }
 
 //submit functions
@@ -100,7 +120,6 @@ function editFormSubmitHandler(evt) {
 
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
-
   closePopup(editPopup);
 }
 
@@ -115,12 +134,16 @@ function addCardFormSubmitHandler(evt) {
 
   cardNameInput.value = '';
   cardLinkInput.value = '';
+  
+  addCardSaveButton.setAttribute('disabled', true);
+  addCardSaveButton.classList.add('popup__save-button_disabled');
 }
 
 //open buttons events
 editButton.addEventListener('click', function () {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
+  
   openPopup(editPopup);
 });
 addButton.addEventListener('click', function () {
@@ -131,9 +154,11 @@ addButton.addEventListener('click', function () {
 editCloseButton.addEventListener('click', function () {
   closePopup(editPopup);
 });
+
 addCardCloseButton.addEventListener('click',function () {
   closePopup(addPopup);
 });
+
 photoCardCloseButton.addEventListener('click', function () {
   closePopup(photoPopup);
 });
