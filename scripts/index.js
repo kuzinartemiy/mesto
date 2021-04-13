@@ -96,11 +96,16 @@ function openPopup(popup) {
 }
 
 function closePopup(popup) {
+  
   popup.classList.remove('popup_opened');
+
+  document.removeEventListener('click', closeOverlayClick);
+  document.removeEventListener('keyup', closeEscapeKeydown);
+
+
 }
 
 //close by events functions
-
 const closeOverlayClick = (evt) => {
   if (evt.target.classList.contains('popup_opened')) {
     closePopup(evt.target);
@@ -141,11 +146,13 @@ function addCardFormSubmitHandler(evt) {
 
 //open buttons events
 editButton.addEventListener('click', function () {
+  
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
   
   openPopup(editPopup);
 });
+
 addButton.addEventListener('click', function () {
   openPopup(addPopup);
 });
