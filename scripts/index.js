@@ -166,6 +166,13 @@ addButton.addEventListener('click', function () {
 
 //close buttons events
 editCloseButton.addEventListener('click', function () {
+  const inputList = Array.from(editPopup.querySelectorAll('.popup__input'));
+  inputList.forEach(inputElement => {
+    const errorElement = inputElement.nextElementSibling;
+    errorElement.textContent = '';
+    errorElement.classList.remove('popup__input-error_visible');
+    inputElement.classList.remove('popup__input_type_error');
+  })
   closePopup(editPopup);
 });
 
