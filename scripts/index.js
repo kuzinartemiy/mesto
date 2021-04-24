@@ -87,7 +87,7 @@ const validateForm = (formElement) => {
 //form validate
 formList.forEach(formElement => validateForm(formElement));
 
-//popups functions
+//функции попапов
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 
@@ -114,7 +114,7 @@ const toggleButton = (popup) => {
   }
 }
 
-//close by events functions
+//функции событий закрытия попапов
 const closeOverlayClick = (evt) => {
   if (evt.target.classList.contains('popup_opened')) {
     closePopup(evt.target);
@@ -137,7 +137,6 @@ const clearInputErrors = (popup) => {
     inputElement.classList.remove('popup__input_type_error');
   })
 }
-
 
 //submit functions
 function editFormSubmitHandler(evt) {
@@ -166,7 +165,7 @@ function addCardFormSubmitHandler(evt) {
   addCardSaveButton.classList.add('popup__save-button_disabled');
 }
 
-//open buttons events
+//функции событий открытия попапов
 editButton.addEventListener('click', function () {
   clearInputErrors(editPopup);
   nameInput.value = nameProfile.textContent;
