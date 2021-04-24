@@ -1,91 +1,91 @@
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
+
+const validationData = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_visible'
+}
+
+//cards
+const initialCards = [
+  {
+    name: 'Париж',
+    link: 'https://images.unsplash.com/photo-1596889591149-1646a4321476?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1924&q=80'
+  },
+  {
+    name: 'Танзания',
+    link: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1266&q=80'
+  },
+  {
+    name: 'Венеция',
+    link: 'https://images.unsplash.com/photo-1616246686486-a4a886f23ac6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=629&q=80'
+  },
+  {
+    name: 'Китай',
+    link: 'https://images.unsplash.com/photo-1598249645083-5cbc4351b263?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
+  },
+  {
+    name: 'Косой переулок',
+    link: 'https://images.unsplash.com/photo-1616262373426-18bfa28bafab?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
+  },
+  {
+    name: 'Индонезия',
+    link: 'https://images.unsplash.com/photo-1612995972660-c95bcbe960e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80'
+  }
+];
+
 const content = document.querySelector('.content');
 const places = content.querySelector('.places__list');
-const placeTemplate = document.querySelector('#place').content;
 
-//buttons
+// //buttons
 const editButton = content.querySelector('.profile__edit-button');
 const addButton = content.querySelector('.profile__add-button');
 const editCloseButton = content.querySelector('#edit-close-button');
 const addCardCloseButton = content.querySelector('#add-card-close-button');
 const addCardSaveButton = content.querySelector('#add-card-save-button');
-const photoCardCloseButton = content.querySelector('#photo-card-close-button');
 
-//popups
+// //popups
 const editPopup = content.querySelector('#edit-popup');
 const addPopup = content.querySelector('#add-popup');
-const photoPopup = content.querySelector('#photo-popup');
 
-//profileElements
+// //profileElements
 const nameProfile = content.querySelector('.profile__name');
 const jobProfile = content.querySelector('.profile__job');
 
-//inputs
+// //inputs
 const nameInput = content.querySelector('.popup__input_field_name');
 const jobInput = content.querySelector('.popup__input_field_job');
 const cardNameInput = content.querySelector('.popup__input_field_card-name');
 const cardLinkInput = content.querySelector('.popup__input_field_card-link');
 
-//forms
+// //forms
+const formList = Array.from(document.querySelectorAll(validationData.formSelector));
 const editFormElement = content.querySelector('#edit-form');
 const addCardFormElement = content.querySelector('#add-card-form');
-
-//photo-popup elements
-const cardBigImage = content.querySelector('.popup__big-image'); 
-const cardCaption = content.querySelector('.popup__caption');
 
 // initialCards in initialCards.js
 
 //render functions
-function renderCard (card) {
-  places.prepend(createCard(card.name, card.link));
-}
-
-function createCard (name, link) {
-  const placeElement = placeTemplate.querySelector('.place').cloneNode(true);
-  const placeImage = placeElement.querySelector('.place__image');
-  const placeTitle = placeElement.querySelector('.place__title');
-
-  placeImage.src = link;
-  placeImage.alt = 'На фотографии ' + name;
-  placeTitle.textContent = name;
-
-  //like
-  const likeButton = placeElement.querySelector('.place__like');
-  likeButton.addEventListener('click', function () {
-    addLike(likeButton);
-  });
-
-  //delete
-  const deleteButton = placeElement.querySelector('.place__delete');
-  deleteButton.addEventListener('click', function () {
-    deleteCard(placeElement);
-  });
-
-  //open-card-image
-  placeImage.addEventListener('click', function () {
-    openCardPhoto(name, link);
-  });
-
-  return placeElement;
+function renderCard (initialCard) {
+  const card = new Card(initialCard, '.place__template');
+  const initialCardElement = card.generateCard();
+  places.prepend(initialCardElement);
 }
 
 //cards render
-initialCards.forEach(card => renderCard(card));
+initialCards.forEach(initialCard => renderCard(initialCard));
 
-//card actions
-function addLike (button) {
-  button.classList.toggle('place__like_active');
-}
 
-function deleteCard (card) {
-  card.remove();
+const validateForm = (formElement) => {
+  const formForValidate = new FormValidator(validationData, formElement);
+  formForValidate.enableValidation();
 }
-
-function openCardPhoto (name, link) {
-  cardCaption.textContent = name;
-  cardBigImage.src = link;
-  openPopup(photoPopup);
-}
+//form validate
+formList.forEach(formElement => validateForm(formElement));
 
 //popups functions
 function openPopup(popup) {
@@ -102,10 +102,16 @@ function closePopup(popup) {
   document.removeEventListener('click', closeOverlayClick);
   document.removeEventListener('keyup', closeEscapeKeydown);
 }
-
-const toggleButton = (buttonElement) => {
-  buttonElement.setAttribute('disabled', true);
-  buttonElement.classList.add('popup__save-button_disabled');
+//button toggle
+const toggleButton = (popup) => {
+  const buttonElement = popup.querySelector('.popup__save-button');
+  if (popup === editPopup) {
+    buttonElement.removeAttribute('disabled', true);
+    buttonElement.classList.remove('popup__save-button_disabled');
+  } else {
+    buttonElement.setAttribute('disabled', true);
+    buttonElement.classList.add('popup__save-button_disabled');
+  }
 }
 
 //close by events functions
@@ -122,6 +128,17 @@ const closeEscapeKeydown = (evt) => {
   }
 }
 
+const clearInputErrors = (popup) => {
+  const inputList = Array.from(popup.querySelectorAll('.popup__input'));
+  inputList.forEach(inputElement => {
+    const errorElement = inputElement.nextElementSibling;
+    errorElement.textContent = '';
+    errorElement.classList.remove('popup__input-error_visible');
+    inputElement.classList.remove('popup__input_type_error');
+  })
+}
+
+
 //submit functions
 function editFormSubmitHandler(evt) {
   evt.preventDefault();
@@ -133,11 +150,13 @@ function editFormSubmitHandler(evt) {
 
 function addCardFormSubmitHandler(evt) {
   evt.preventDefault();
-  const newCard = {
+  const newInitialCard = {
     name: cardNameInput.value,
     link: cardLinkInput.value
   };
-  renderCard(newCard);
+  const newCard = new Card(newInitialCard, '.place__template');
+
+  places.prepend(newCard.generateCard());
   closePopup(addPopup);
 
   cardNameInput.value = '';
@@ -149,22 +168,23 @@ function addCardFormSubmitHandler(evt) {
 
 //open buttons events
 editButton.addEventListener('click', function () {
-
+  clearInputErrors(editPopup);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
   
+  toggleButton(editPopup);
   openPopup(editPopup);
 });
 
 addButton.addEventListener('click', function () {
   const button = addPopup.querySelector('.popup__save-button');
   //disable save-button before validation
-  toggleButton(button);
+  toggleButton(addPopup);
 
   openPopup(addPopup);
 });
 
-//close buttons events
+// //close buttons events
 editCloseButton.addEventListener('click', function () {
   closePopup(editPopup);
 });
@@ -173,10 +193,6 @@ addCardCloseButton.addEventListener('click',function () {
   closePopup(addPopup);
 });
 
-photoCardCloseButton.addEventListener('click', function () {
-  closePopup(photoPopup);
-});
-
-//forms events
+// //forms events
 editFormElement.addEventListener('submit', editFormSubmitHandler);
 addCardFormElement.addEventListener('submit', addCardFormSubmitHandler);
