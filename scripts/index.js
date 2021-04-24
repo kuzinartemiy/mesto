@@ -1,6 +1,7 @@
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
 
+//classes for validation
 const validationData = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -67,8 +68,6 @@ const formList = Array.from(document.querySelectorAll(validationData.formSelecto
 const editFormElement = content.querySelector('#edit-form');
 const addCardFormElement = content.querySelector('#add-card-form');
 
-// initialCards in initialCards.js
-
 //render functions
 function renderCard (initialCard) {
   const card = new Card(initialCard, '.place__template');
@@ -79,15 +78,15 @@ function renderCard (initialCard) {
 //cards render
 initialCards.forEach(initialCard => renderCard(initialCard));
 
-
+//form validate
 const validateForm = (formElement) => {
   const formForValidate = new FormValidator(validationData, formElement);
   formForValidate.enableValidation();
 }
-//form validate
+
 formList.forEach(formElement => validateForm(formElement));
 
-//функции попапов
+//popup functions
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 
@@ -114,7 +113,7 @@ const toggleButton = (popup) => {
   }
 }
 
-//функции событий закрытия попапов
+//close popups events
 const closeOverlayClick = (evt) => {
   if (evt.target.classList.contains('popup_opened')) {
     closePopup(evt.target);
@@ -127,6 +126,7 @@ const closeEscapeKeydown = (evt) => {
     closePopup(activePopup);
   }
 }
+
 
 const clearInputErrors = (popup) => {
   const inputList = Array.from(popup.querySelectorAll('.popup__input'));
@@ -165,7 +165,7 @@ function addCardFormSubmitHandler(evt) {
   addCardSaveButton.classList.add('popup__save-button_disabled');
 }
 
-//функции событий открытия попапов
+//open popups events
 editButton.addEventListener('click', function () {
   clearInputErrors(editPopup);
   nameInput.value = nameProfile.textContent;
