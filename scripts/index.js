@@ -2,75 +2,51 @@ import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
 
 //classes for validation
-const validationData = {
+const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: 'popup__save-button_disabled',
   inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_visible'
+  errorClass: 'popup__input-error_visible',
+  templateClass: '.place__template',
+  editPopupId: '#edit-popup'
 }
-
-//cards
-const initialCards = [
-  {
-    name: 'Париж',
-    link: 'https://images.unsplash.com/photo-1596889591149-1646a4321476?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1924&q=80'
-  },
-  {
-    name: 'Танзания',
-    link: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1266&q=80'
-  },
-  {
-    name: 'Венеция',
-    link: 'https://images.unsplash.com/photo-1616246686486-a4a886f23ac6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=629&q=80'
-  },
-  {
-    name: 'Китай',
-    link: 'https://images.unsplash.com/photo-1598249645083-5cbc4351b263?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
-  },
-  {
-    name: 'Косой переулок',
-    link: 'https://images.unsplash.com/photo-1616262373426-18bfa28bafab?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
-  },
-  {
-    name: 'Индонезия',
-    link: 'https://images.unsplash.com/photo-1612995972660-c95bcbe960e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80'
-  }
-];
 
 const content = document.querySelector('.content');
 const places = content.querySelector('.places__list');
 
-// //buttons
+//buttons
 const editButton = content.querySelector('.profile__edit-button');
 const addButton = content.querySelector('.profile__add-button');
 const editCloseButton = content.querySelector('#edit-close-button');
 const addCardCloseButton = content.querySelector('#add-card-close-button');
 const addCardSaveButton = content.querySelector('#add-card-save-button');
+const photoCardCloseButton = content.querySelector('#photo-card-close-button');
 
-// //popups
+//popups
 const editPopup = content.querySelector('#edit-popup');
 const addPopup = content.querySelector('#add-popup');
+const photoPopup = content.querySelector('#photo-popup');
 
-// //profileElements
+//profileElements
 const nameProfile = content.querySelector('.profile__name');
 const jobProfile = content.querySelector('.profile__job');
 
-// //inputs
+//inputs
 const nameInput = content.querySelector('.popup__input_field_name');
 const jobInput = content.querySelector('.popup__input_field_job');
 const cardNameInput = content.querySelector('.popup__input_field_card-name');
 const cardLinkInput = content.querySelector('.popup__input_field_card-link');
 
-// //forms
-const formList = Array.from(document.querySelectorAll(validationData.formSelector));
+//forms
+const formList = Array.from(document.querySelectorAll(config.formSelector));
 const editFormElement = content.querySelector('#edit-form');
 const addCardFormElement = content.querySelector('#add-card-form');
 
-//render functions
+//render function
 function renderCard (initialCard) {
-  const card = new Card(initialCard, '.place__template');
+  const card = new Card(initialCard, config.templateClass);
   const initialCardElement = card.generateCard();
   places.prepend(initialCardElement);
 }
@@ -79,12 +55,20 @@ function renderCard (initialCard) {
 initialCards.forEach(initialCard => renderCard(initialCard));
 
 //form validate
-const validateForm = (formElement) => {
-  const formForValidate = new FormValidator(validationData, formElement);
-  formForValidate.enableValidation();
+const addFormValidator = (config, addCardFormElement) => {
+  const addFormValidate = new FormValidator(config, addCardFormElement);
+  addFormValidate.clearInputErrors(addPopup);
+  addFormValidate.toggleButton(addPopup);
+  addFormValidate.clearInputs(addPopup);
+  addFormValidate.enableValidation();
 }
 
-formList.forEach(formElement => validateForm(formElement));
+const editFormValidator = (config, editFormElement) => {
+  const editFormValidate = new FormValidator(config, editFormElement);
+  editFormValidate.toggleButton(editPopup);
+  editFormValidate.clearInputErrors(editPopup);
+  editFormValidate.enableValidation();
+}
 
 //popup functions
 function openPopup(popup) {
@@ -101,17 +85,6 @@ function closePopup(popup) {
   document.removeEventListener('click', closeOverlayClick);
   document.removeEventListener('keyup', closeEscapeKeydown);
 }
-//button toggle
-const toggleButton = (popup) => {
-  const buttonElement = popup.querySelector('.popup__save-button');
-  if (popup === editPopup) {
-    buttonElement.removeAttribute('disabled', true);
-    buttonElement.classList.remove('popup__save-button_disabled');
-  } else {
-    buttonElement.setAttribute('disabled', true);
-    buttonElement.classList.add('popup__save-button_disabled');
-  }
-}
 
 //close popups events
 const closeOverlayClick = (evt) => {
@@ -127,15 +100,9 @@ const closeEscapeKeydown = (evt) => {
   }
 }
 
-
-const clearInputErrors = (popup) => {
-  const inputList = Array.from(popup.querySelectorAll('.popup__input'));
-  inputList.forEach(inputElement => {
-    const errorElement = inputElement.nextElementSibling;
-    errorElement.textContent = '';
-    errorElement.classList.remove('popup__input-error_visible');
-    inputElement.classList.remove('popup__input_type_error');
-  })
+const clearInputs = (popup) => {
+  const popupInputs = Array.from(popup.querySelectorAll('.popup__input'));
+  popupInputs.forEach(popupInput => popupInput.value = '');
 }
 
 //submit functions
@@ -153,13 +120,8 @@ function addCardFormSubmitHandler(evt) {
     name: cardNameInput.value,
     link: cardLinkInput.value
   };
-  const newCard = new Card(newInitialCard, '.place__template');
-
-  places.prepend(newCard.generateCard());
+  renderCard(newInitialCard);
   closePopup(addPopup);
-
-  cardNameInput.value = '';
-  cardLinkInput.value = '';
   
   addCardSaveButton.setAttribute('disabled', true);
   addCardSaveButton.classList.add('popup__save-button_disabled');
@@ -167,23 +129,20 @@ function addCardFormSubmitHandler(evt) {
 
 //open popups events
 editButton.addEventListener('click', function () {
-  clearInputErrors(editPopup);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
   
-  toggleButton(editPopup);
+  editFormValidator(config, editFormElement);
   openPopup(editPopup);
 });
 
 addButton.addEventListener('click', function () {
   const button = addPopup.querySelector('.popup__save-button');
-  //disable save-button before validation
-  toggleButton(addPopup);
-
+  addFormValidator(config, addCardFormElement);
   openPopup(addPopup);
 });
 
-// //close buttons events
+//close buttons events
 editCloseButton.addEventListener('click', function () {
   closePopup(editPopup);
 });
@@ -192,6 +151,10 @@ addCardCloseButton.addEventListener('click',function () {
   closePopup(addPopup);
 });
 
-// //forms events
+photoCardCloseButton.addEventListener('click', () => {
+  closePopup(photoPopup);
+});
+
+//forms events
 editFormElement.addEventListener('submit', editFormSubmitHandler);
 addCardFormElement.addEventListener('submit', addCardFormSubmitHandler);

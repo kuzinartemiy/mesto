@@ -1,9 +1,7 @@
 const content = document.querySelector('.content');
-const places = content.querySelector('.places__list');
-const photoPopup = content.querySelector('#photo-popup');
 const cardBigImage = content.querySelector('.popup__big-image'); 
 const cardCaption = content.querySelector('.popup__caption');
-const photoCardCloseButton = content.querySelector('#photo-card-close-button');
+const photoPopup = content.querySelector('#photo-popup');
 
 export class Card {
   constructor(data, placeTemplate) {
@@ -36,10 +34,6 @@ export class Card {
     placeImage.addEventListener('click', () => {
       this._handleOpenCard();
     })
-    
-    photoCardCloseButton.addEventListener('click', () => {
-      this._handleCloseCard();
-    });
   }
 
   _handleAddLike(likeButton) {
@@ -53,6 +47,7 @@ export class Card {
   _handleOpenCard() {
     cardCaption.textContent = this._name;
     cardBigImage.src = this._link;
+    cardBigImage.alt = `На большой фотографии ${this._name}`;
     photoPopup.classList.add('popup_opened');
 
     document.addEventListener('click', (evt) => {
@@ -90,6 +85,7 @@ export class Card {
     this._element = this._getTemplate();
     this._setEventListeners();
     this._element.querySelector('.place__image').src = this._link;
+    this._element.querySelector('.place__image').alt = `На фотографии ${this._name}`;
     this._element.querySelector('.place__title').textContent = this._name;
     return this._element;
   }
