@@ -40,7 +40,6 @@ const cardNameInput = content.querySelector('.popup__input_field_card-name');
 const cardLinkInput = content.querySelector('.popup__input_field_card-link');
 
 //forms
-const formList = Array.from(document.querySelectorAll(config.formSelector));
 const editFormElement = content.querySelector('#edit-form');
 const addCardFormElement = content.querySelector('#add-card-form');
 
@@ -68,7 +67,6 @@ function openPopup(popup) {
 }
 
 function closePopup(popup) {
-
   popup.classList.remove('popup_opened');
 
   document.removeEventListener('click', closeOverlayClick);
@@ -116,28 +114,32 @@ function addCardFormSubmitHandler(evt) {
   addCardSaveButton.classList.add('popup__save-button_disabled');
 }
 
+// validate addCard-form
+const addFormValidator = new FormValidator(config, addCardFormElement);
+addFormValidator.enableValidation();
+
+// validate edit-form
+const editFormValidator = new FormValidator(config, editFormElement);
+editFormValidator.enableValidation();
+
 //open popups events
 editButton.addEventListener('click', function () {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-  // validate edit-form
-  const editFormValidator = new FormValidator(config, editFormElement);
+  
+  //validation methods
   editFormValidator.toggleButton(editPopup);
   editFormValidator.clearInputErrors(editPopup);
-  editFormValidator.enableValidation();
 
   openPopup(editPopup);
 });
 
 addButton.addEventListener('click', function () {
-  const button = addPopup.querySelector('.popup__save-button');
-  // validate addCard-form
-  const addFormValidator = new FormValidator(config, addCardFormElement);
+  //validation methods
   addFormValidator.clearInputErrors(addPopup);
   addFormValidator.toggleButton(addPopup);
   addFormValidator.clearInputs(addPopup);
-  addFormValidator.enableValidation();
-
+  
   openPopup(addPopup);
 });
 
