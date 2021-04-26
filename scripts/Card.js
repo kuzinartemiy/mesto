@@ -8,6 +8,8 @@ export class Card {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = placeTemplate;
+    this._element = this._getTemplate();
+    this._placeImage = this._element.querySelector('.place__image');
   }
 
   _getTemplate() {
@@ -19,6 +21,7 @@ export class Card {
 
     return placeElement;
   }
+
   _setEventListeners() {
     const likeButton = this._element.querySelector('.place__like');
     likeButton.addEventListener('click', () => {
@@ -30,8 +33,7 @@ export class Card {
       this._handleDeleteCard(this._element);
     })
     
-    const placeImage = this._element.querySelector('.place__image');
-    placeImage.addEventListener('click', () => {
+    this._placeImage.addEventListener('click', () => {
       this._handleOpenCard();
     })
   }
@@ -82,10 +84,10 @@ export class Card {
   }
 
   generateCard() {
-    this._element = this._getTemplate();
+    
     this._setEventListeners();
-    this._element.querySelector('.place__image').src = this._link;
-    this._element.querySelector('.place__image').alt = `На фотографии ${this._name}`;
+    this._placeImage.src = this._link;
+    this._placeImage.alt = `На фотографии ${this._name}`;
     this._element.querySelector('.place__title').textContent = this._name;
     return this._element;
   }

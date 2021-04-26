@@ -46,29 +46,18 @@ const addCardFormElement = content.querySelector('#add-card-form');
 
 //render function
 function renderCard (initialCard) {
+  const newCard = createCard(initialCard);
+  places.prepend(newCard);
+}
+
+function createCard(initialCard) {
   const card = new Card(initialCard, config.templateClass);
   const initialCardElement = card.generateCard();
-  places.prepend(initialCardElement);
+  return initialCardElement;
 }
 
 //cards render
 initialCards.forEach(initialCard => renderCard(initialCard));
-
-//form validate
-const addFormValidator = (config, addCardFormElement) => {
-  const addFormValidate = new FormValidator(config, addCardFormElement);
-  addFormValidate.clearInputErrors(addPopup);
-  addFormValidate.toggleButton(addPopup);
-  addFormValidate.clearInputs(addPopup);
-  addFormValidate.enableValidation();
-}
-
-const editFormValidator = (config, editFormElement) => {
-  const editFormValidate = new FormValidator(config, editFormElement);
-  editFormValidate.toggleButton(editPopup);
-  editFormValidate.clearInputErrors(editPopup);
-  editFormValidate.enableValidation();
-}
 
 //popup functions
 function openPopup(popup) {
@@ -131,14 +120,24 @@ function addCardFormSubmitHandler(evt) {
 editButton.addEventListener('click', function () {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-  
-  editFormValidator(config, editFormElement);
+  // validate edit-form
+  const editFormValidator = new FormValidator(config, editFormElement);
+  editFormValidator.toggleButton(editPopup);
+  editFormValidator.clearInputErrors(editPopup);
+  editFormValidator.enableValidation();
+
   openPopup(editPopup);
 });
 
 addButton.addEventListener('click', function () {
   const button = addPopup.querySelector('.popup__save-button');
-  addFormValidator(config, addCardFormElement);
+  // validate addCard-form
+  const addFormValidator = new FormValidator(config, addCardFormElement);
+  addFormValidator.clearInputErrors(addPopup);
+  addFormValidator.toggleButton(addPopup);
+  addFormValidator.clearInputs(addPopup);
+  addFormValidator.enableValidation();
+
   openPopup(addPopup);
 });
 
