@@ -11,7 +11,7 @@ export class PopupWithImage extends Popup {
   open(name, link) {
     super.open();
     this._bigImage.src = link;
-    this._bigImage.alt = name;
+    this._bigImage.alt = `${name} на большой фотографии`;
     this._bigImageCaption.textContent = name;
   }
 }
