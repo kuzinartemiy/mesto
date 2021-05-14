@@ -1,11 +1,13 @@
 export class Card {
-  constructor(data, placeTemplate, popupWithImage) {
+  constructor(data, placeTemplate, openPopupWithImage) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = placeTemplate;
     this._element = this._getTemplate();
+    this._likeButton = this._element.querySelector('.place__like');
+    this._deleteButton = this._element.querySelector('.place__delete');
     this._placeImage = this._element.querySelector('.place__image');
-    this._popupWithImage = popupWithImage;
+    this._openPopupWithImage = openPopupWithImage;
   }
 
   _getTemplate() {
@@ -19,27 +21,25 @@ export class Card {
   }
 
   _setEventListeners() {
-    const likeButton = this._element.querySelector('.place__like');
-    likeButton.addEventListener('click', () => {
-      this._handleAddLike(likeButton);
+    this._likeButton.addEventListener('click', () => {
+      this._toggleLike(this._likeButton);
     })
 
-    const deleteButton = this._element.querySelector('.place__delete');
-    deleteButton.addEventListener('click', () => {
-      this._handleDeleteCard(this._element);
+    this._deleteButton.addEventListener('click', () => {
+      this._deleteCard();
     })
     
     this._placeImage.addEventListener('click', () => {
-      this._popupWithImage.open(this._name, this._link);
+      this._openPopupWithImage(this._name, this._link);
     })
   }
 
-  _handleAddLike(likeButton) {
-    likeButton.classList.toggle('place__like_active');
+  _toggleLike() {
+    this._likeButton.classList.toggle('place__like_active');
   }
 
-  _handleDeleteCard(element) {
-    element.remove();
+  _deleteCard() {
+    this._element.remove();
   }
 
   generateCard() {
