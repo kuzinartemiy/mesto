@@ -31,7 +31,7 @@ export class Popup {
   setEventListeners() {
     this._popupCloseButton.addEventListener('click', this.close.bind(this));
 
-    document.addEventListener('click', (evt) => {
+    this._popup.addEventListener('click', (evt) => {
       this._handleOverlayClose(evt)}
     );
   }

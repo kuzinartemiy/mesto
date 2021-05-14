@@ -95,7 +95,6 @@ editButton.addEventListener('click', function () {
 
 addButton.addEventListener('click', function () {
   //validation methods
-  addFormValidator.clearInputErrors();
   addFormValidator.disableButton();
   addFormValidator.clearInputErrors();
 
