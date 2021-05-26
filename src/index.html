@@ -12,10 +12,12 @@
   </header>
   <main class="content">
     <section class="profile">
-      <div class="profile__avatar"></div>
+      <div class="profile__avatar">
+        <div class="profile__avatar-edit"></div>
+      </div>
       <div class="profile__info">
-        <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <p class="profile__job">Исследователь океана</p>
+        <h1 class="profile__name"></h1>
+        <p class="profile__job"></p>
         <button aria-label="Редактировать" type="button" class="profile__edit-button"></button>
       </div>
       <button aria-label="Добавить" type="button" class="profile__add-button"></button>
@@ -58,6 +60,26 @@
         </figure>
       </div>
     </div>
+    <div id="delete-popup" class="popup">
+      <div class="popup__container">
+        <form id="delete-card-form" name="card-delete" action="#" class="popup__form" novalidate autocomplete="off">
+          <button id="delete-card-close-button" aria-label="Закрыть" type="button" class="popup__close-button"></button>
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button aria-label="Удалить" type="submit" class="popup__save-button" id="card-delete-button">Да</button>
+        </form>
+      </div>
+    </div>
+    <div id="edit-avatar-popup" class="popup">
+      <div class="popup__container">
+        <form id="edit-avatar-form" name="edit-avatar" action="#" class="popup__form" novalidate autocomplete="off">
+          <button id="edit-avatar-close-button" aria-label="Закрыть" type="button" class="popup__close-button"></button>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <input required name="newCardLink" type="url" placeholder="Ссылка на новый аватар" class="popup__input popup__input_field_avatar-link">
+          <span class="popup__input-error"></span>
+          <button aria-label="Обновить" type="submit" class="popup__save-button" id="edit-avatar-button">Сохранить</button>
+        </form>
+      </div>
+    </div>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
@@ -69,7 +91,10 @@
       <img src="#" alt="Фотография" class="place__image">
       <div class="place__info">
         <h2 class="place__title"></h2>
-        <button aria-label="Нравится" type="button" class="place__like"></button>
+        <div class="place__likes">
+          <button aria-label="Нравится" type="button" class="place__like"></button>
+          <span class="place__like-count"></span>
+        </div>
       </div>
     </li>
   </template>

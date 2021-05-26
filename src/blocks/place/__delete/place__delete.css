@@ -9,6 +9,7 @@
   border: none;
   right: 15px;
   top: 18px;
+  display: none;
 }
 
 .place__delete:hover {

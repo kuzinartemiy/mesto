@@ -15,18 +15,23 @@ export const places = content.querySelector('.places__list');
 export const placesSelector = '.places__list';
 export const userNameSelector = '.profile__name';
 export const userJobSelector = '.profile__job';
+export const avatarSelector = '.profile__avatar';
 
 //buttons
 export const editButton = content.querySelector('.profile__edit-button');
 export const addButton = content.querySelector('.profile__add-button');
 export const addCardSaveButton = content.querySelector('#add-card-save-button');
+export const editAvatar = content.querySelector('.profile__avatar-edit');
+export const submitButton = content.querySelector('.popup__save-button');
 
 //inputs
 export const nameInput = content.querySelector('.popup__input_field_name');
 export const jobInput = content.querySelector('.popup__input_field_job');
 export const cardNameInput = content.querySelector('.popup__input_field_card-name');
 export const cardLinkInput = content.querySelector('.popup__input_field_card-link');
+export const avatarLinkInput = content.querySelector('.popup__input_field_avatar-link');
 
 //forms
 export const editFormElement = content.querySelector('#edit-form');
 export const addCardFormElement = content.querySelector('#add-card-form');
+export const editAvatarFormElement = content.querySelector('#edit-avatar-form');
