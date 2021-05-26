@@ -156,8 +156,6 @@ editAvatarValidator.enableValidation();
 //render function
 function renderer (card, container) {
   const newCard = createCard(card, config, popupWithImage.open.bind(popupWithImage), deleteCardSubmitHandler, userInfo.getUserId(), toggleLike);
-  // const cardToPrepend = newCard.generateCard();
-  // container.prepend(newCard);
   section.prependCard(newCard, container);
 }
 
