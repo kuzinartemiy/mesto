@@ -29,7 +29,7 @@ const api = new Api('https://mesto.nomoreparties.co/v1/cohort-24','dff2004b-ae2b
 const userInfo = new UserInfo({userNameSelector, userJobSelector, avatarSelector});
 
 //отображение загрузки
-function renderLoading(isLoading, popup) {
+const renderLoading = (isLoading, popup) => {
   if(isLoading) {
     popup.changeSubmitText('Сохранение...');
   } else {
@@ -41,7 +41,7 @@ const editAvatarPopup = new PopupWithForm('#edit-avatar-popup', editAvatarSubmit
 editAvatarPopup.setEventListeners();
 
 // обработчик редактирования аватара
-function editAvatarSubmitHandler(inputsData) {
+const editAvatarSubmitHandler = (inputsData) => {
   renderLoading(true, editAvatarPopup);
   api.editAvatar(inputsData.newCardLink)
     .then(res => {
@@ -62,7 +62,7 @@ const editProfilePopup = new PopupWithForm('#edit-popup', editFormSubmitHandler)
 editProfilePopup.setEventListeners();
 
 //обработчик события редактирования профиля
-function editFormSubmitHandler(inputsData) {
+const editFormSubmitHandler = (inputsData) => {
   renderLoading(true, editProfilePopup);
   api.editProfile({newName: inputsData.inputName, newAbout: inputsData.inputJob})
     .then(res => {
@@ -83,7 +83,7 @@ const deleteCardPopup = new PopupWithForm('#delete-popup', deleteCardSubmitHandl
 deleteCardPopup.setEventListeners();
 
 // обработчик события удаления карточки
-function deleteCardSubmitHandler(cardId,thisCard) {
+const deleteCardSubmitHandler = (cardId,thisCard) => {
   deleteCardPopup.open();
   deleteCardPopup.setSubmitHandle(() => {
     api.deleteCard(cardId)
@@ -103,7 +103,7 @@ const addCardPopup = new PopupWithForm('#add-popup', addCardFormSubmitHandler);
 addCardPopup.setEventListeners();
 
 // обработчик события добавления карточки
-function addCardFormSubmitHandler(inputsData) {
+const addCardFormSubmitHandler = (inputsData) => {
   renderLoading(true, addCardPopup);
   const newInitialCard = {
     newCardName: inputsData.newCardName,
