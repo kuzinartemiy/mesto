@@ -41,7 +41,7 @@ const editAvatarPopup = new PopupWithForm('#edit-avatar-popup', editAvatarSubmit
 editAvatarPopup.setEventListeners();
 
 // обработчик редактирования аватара
-const editAvatarSubmitHandler = (inputsData) => {
+function editAvatarSubmitHandler(inputsData) {
   renderLoading(true, editAvatarPopup);
   api.editAvatar(inputsData.newCardLink)
     .then(res => {
@@ -62,7 +62,7 @@ const editProfilePopup = new PopupWithForm('#edit-popup', editFormSubmitHandler)
 editProfilePopup.setEventListeners();
 
 //обработчик события редактирования профиля
-const editFormSubmitHandler = (inputsData) => {
+function editFormSubmitHandler(inputsData) {
   renderLoading(true, editProfilePopup);
   api.editProfile({newName: inputsData.inputName, newAbout: inputsData.inputJob})
     .then(res => {
@@ -83,7 +83,7 @@ const deleteCardPopup = new PopupWithForm('#delete-popup', deleteCardSubmitHandl
 deleteCardPopup.setEventListeners();
 
 // обработчик события удаления карточки
-const deleteCardSubmitHandler = (cardId,thisCard) => {
+function deleteCardSubmitHandler(cardId,thisCard) {
   deleteCardPopup.open();
   deleteCardPopup.setSubmitHandle(() => {
     api.deleteCard(cardId)
@@ -103,7 +103,7 @@ const addCardPopup = new PopupWithForm('#add-popup', addCardFormSubmitHandler);
 addCardPopup.setEventListeners();
 
 // обработчик события добавления карточки
-const addCardFormSubmitHandler = (inputsData) => {
+function addCardFormSubmitHandler(inputsData) {
   renderLoading(true, addCardPopup);
   const newInitialCard = {
     newCardName: inputsData.newCardName,
