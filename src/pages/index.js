@@ -46,8 +46,6 @@ function editAvatarSubmitHandler(inputsData) {
   api.editAvatar(inputsData.newCardLink)
     .then(res => {
       userInfo.setUserAvatar(res.avatar);
-    })
-    .then(res => {
       editAvatarPopup.close();
     })
     .catch(error => {
@@ -67,8 +65,6 @@ function editFormSubmitHandler(inputsData) {
   api.editProfile({newName: inputsData.inputName, newAbout: inputsData.inputJob})
     .then(res => {
       userInfo.setUserInfo(res);
-    })
-    .then(res => {
       editProfilePopup.close();
     })
     .catch(error => {
@@ -89,8 +85,6 @@ function deleteCardSubmitHandler(cardId,thisCard) {
     api.deleteCard(cardId)
       .then(res => {
         thisCard.deleteCard();
-      })
-      .then(res => {
         deleteCardPopup.close();
       })
       .catch(error => {
@@ -112,8 +106,6 @@ function addCardFormSubmitHandler(inputsData) {
   api.addCard(newInitialCard)
     .then(res => {
       section.addCard(res);
-    })
-    .then(res => {
       addCardPopup.close();
     })
     .catch(error => {
@@ -164,13 +156,14 @@ editAvatarValidator.enableValidation();
 //render function
 function renderer (card, container) {
   const newCard = createCard(card, config, popupWithImage.open.bind(popupWithImage), deleteCardSubmitHandler, userInfo.getUserId(), toggleLike);
-  const cardToPrepend = newCard.generateCard();
-  container.prepend(cardToPrepend);
+  // const cardToPrepend = newCard.generateCard();
+  // container.prepend(newCard);
+  section.prependCard(newCard, container);
 }
 
 function createCard(initialCards, config, photoPopup, deletePopup, deleteCardHandle, id, addLikeHandle) {
   const card = new Card(initialCards, config.templateClass, photoPopup, deletePopup, deleteCardHandle, id, addLikeHandle);
-  return card;
+  return card.generateCard();
 }
 
 //open popups events

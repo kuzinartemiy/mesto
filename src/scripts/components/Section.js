@@ -13,4 +13,8 @@ export class Section {
   addCard(card) {
     this._renderer(card, this._container);
   }
+
+  prependCard(card, container) {
+    container.prepend(card);
+  }
 }
