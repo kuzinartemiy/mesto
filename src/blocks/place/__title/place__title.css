@@ -1,6 +1,8 @@
 .place__title {
-  max-width: 190px;
   margin: 0;
+
+  max-width: 190px;
+  
   color: #000000;
   font-family: 'Inter', 'Arial', sans-serif;
   font-size: 24px;

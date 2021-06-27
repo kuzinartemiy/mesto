@@ -1,6 +1,7 @@
 .place__info {
+  padding: 27px 20px 26px 21px;
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 27px 20px 26px 21px;
 }
