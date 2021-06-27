@@ -12,6 +12,7 @@
 
  - HTML
  - CSS(Flex + Grid)
+ - Адаптив под распространённые разрешения экранов
  - Методология БЭМ + Nested
  - JavaScript
  - WebPack
