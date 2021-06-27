@@ -14,5 +14,7 @@
  - CSS(Flex + Grid)
  - Методология БЭМ + Nested
  - JavaScript
+ - WebPack
+ - Реализована работа с запросами из стороннего API
 
 Сделано с душой, благодаря [Яндекс.Практикум](https://praktikum.yandex.ru/)
